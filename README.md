@@ -15,10 +15,6 @@ As a first iteration for this solution, we want to build a web application that 
 - Update the API to accommodate for your technical design. Run the API by using `npm run serve:api`.
 - The provided mockup is only for reference and inspiration. Feel free to improve it!
 
-### Inspiration mockup
-
-![Memory lane mockup](./memory_lane.png)
-
 ## My Solution
 
 **How to Run**
