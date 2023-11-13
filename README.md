@@ -55,10 +55,11 @@ As a first iteration for this solution, we want to build a web application that 
 
 In summary, this component orchestrates the main features of the memory application, providing users with a cohesive and intuitive platform for managing their memories. It encompasses state management, user interface elements, and the integration of various memory-related components to deliver a complete user experience.
 
-Screenshots: **Memory Lane with no memories** <img width="1355" alt="Screenshot 2023-11-13 at 1 00 46 PM" src="https://github.com/Fiikayo/memorylane/assets/8403201/7236d8ca-6d18-4819-88e1-8b4a4cffb056">
-**Memory Lane with memories** <img width="1222" alt="Screenshot 2023-11-13 at 10 59 10 AM" src="https://github.com/Fiikayo/memorylane/assets/8403201/63183368-a52b-4f04-bc6d-cc862cbe5b88">
-**Memory Lane while adding a memory** <img width="1222" alt="Screenshot 2023-11-13 at 12 15 59 PM" src="https://github.com/Fiikayo/memorylane/assets/8403201/d4553e3f-9bd6-45f5-84bd-b18d82157c21">
-**Memory Lane while successfully uploading an image** <img width="1219" alt="Screenshot 2023-11-13 at 12 16 19 PM" src="https://github.com/Fiikayo/memorylane/assets/8403201/9ad7923c-dcb4-4471-9a55-f3667649dc15">
+Screenshots: **Memory Lane with no memories** <img width="1355" alt="Screenshot 2023-11-13 at 1 00 46 PM" src="https://github.com/Fiikayo/memorylane/assets/8403201/5062d6a7-9025-461c-a8af-7dba236de50d">
+**Memory Lane with memories** <img width="1222" alt="Screenshot 2023-11-13 at 10 59 10 AM" src="https://github.com/Fiikayo/memorylane/assets/8403201/63613979-f2c3-4458-8242-b90bcd45aade">
+**Memory Lane while adding a memory** <img width="1222" alt="Screenshot 2023-11-13 at 12 15 59 PM" src="https://github.com/Fiikayo/memorylane/assets/8403201/1ca42da1-685f-4e76-87d8-c485ec0f08ae">
+**Memory Lane while successfully uploading an image** <img width="1219" alt="Screenshot 2023-11-13 at 12 16 19 PM" src="https://github.com/Fiikayo/memorylane/assets/8403201/a9f2ef04-eb89-4bb4-8b83-11143f1a4c9b">
+
 
 
 
