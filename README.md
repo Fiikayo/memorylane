@@ -21,6 +21,10 @@ As a first iteration for this solution, we want to build a web application that 
 
 ## My Solution
 
+**How to Run**
+-`npm run serve:api` to start the server
+-`npm run dev` to start the react application
+
 1. **State Management:**
 
    - Manages state variables like `isAddSectionVisible` and `isEditSectionVisible` to control the visibility of sections for adding and editing memories.
