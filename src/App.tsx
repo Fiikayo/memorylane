@@ -3,13 +3,55 @@ import './App.css'
 import Memories from './components/Memories/Memories'
 import AddMemory from './components/AddMemory/AddMemory'
 import { useState } from 'react'
+import useFetchMemories from './hooks/useFetchMemories'
+import { MemoryData } from './types/Memory'
+import axios from 'axios'
+import EditMemory from './components/EditMemory/EditMemory'
+import { BASEURL } from './constants/endpoints'
 
 function App() {
-  const [isAddSectionVisible, setAddSectionVisible] = useState(false)
+  const [isAddSectionVisible, setAddSectionVisible] = useState<boolean>(false)
+  const [isEditSectionVisible, setEditSectionVisible] = useState<boolean>(false)
+  const [currentMemoryToEdit, setCurrentMemoryToEdit] =
+    useState<MemoryData | null>(null)
+  const { memoryList, loading, error, setMemoryList } = useFetchMemories()
 
   function handleNewMemoryButtonClick() {
     setAddSectionVisible(true)
   }
+
+  async function addToMemories(memory: MemoryData) {
+    setMemoryList([...memoryList, memory])
+    setAddSectionVisible(false)
+  }
+
+  async function deleteMemory(memory: MemoryData) {
+    try {
+      await axios.delete(`${BASEURL}/memories/${memory.id}`)
+      if (memoryList) {
+        setMemoryList(
+          memoryList.filter((current: MemoryData) => current.id !== memory.id)
+        )
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function editMemory(memory: MemoryData) {
+    setMemoryList((prevState) =>
+      prevState?.map((current) =>
+        current.id === memory.id ? { ...memory } : current
+      )
+    )
+    setEditSectionVisible(false)
+  }
+
+  function showEditMemory(memory: MemoryData) {
+    setCurrentMemoryToEdit(memory)
+    setEditSectionVisible(true)
+  }
+
   return (
     <div>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8 mt-32'>
@@ -22,12 +64,22 @@ function App() {
               </h1>
             </div>
             <div>
-              {/** main section div */}
-              <div>{isAddSectionVisible && <AddMemory />}</div>
+              <div>
+                {isAddSectionVisible && (
+                  <AddMemory addToMemories={addToMemories} />
+                )}
+              </div>
+              <div>
+                {isEditSectionVisible && (
+                  <EditMemory
+                    memory={currentMemoryToEdit}
+                    editMemory={editMemory}
+                  />
+                )}
+              </div>
             </div>
             <div>
-              <div className='flex flex-row justify-between'>
-                <div>sort</div>
+              <div className='flex flex-row justify-end'>
                 <div>
                   <div
                     onClick={handleNewMemoryButtonClick}
@@ -37,7 +89,13 @@ function App() {
                   </div>
                 </div>
               </div>
-              <Memories />
+              <Memories
+                memories={memoryList}
+                loading={loading}
+                error={error}
+                deleteMemory={deleteMemory}
+                showEditMemory={showEditMemory}
+              />
             </div>
           </div>
         </div>

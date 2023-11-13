@@ -1,32 +1,43 @@
-import useFetchMemories from '../../hooks/useFetchMemories'
+import { AxiosError } from 'axios'
+import { MemoryData } from '../../types/Memory'
 import Memory from '../Memory/Memory'
 
-const Memories = () => {
-  const { data, loading, error } = useFetchMemories()
+interface Prop {
+  memories: MemoryData[] | null
+  loading: boolean | null
+  error: AxiosError | null
+  deleteMemory: (memory: MemoryData) => void
+  showEditMemory: (memory: MemoryData) => void
+}
+const Memories = ({
+  memories,
+  loading,
+  error,
+  deleteMemory,
+  showEditMemory,
+}: Prop) => {
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
-  //   if (loading) {
-  //     return <div>Loading...</div>
-  //   }
-
-  //   if (error) {
-  //     return <div>Error:{error.message}</div>
-  //   }
-
-  const memories = [
-    { id: 1, name: 'Hello World', description: 'something here' },
-    { id: 2, name: 'Hello World #2', description: 'something here' },
-  ]
+  if (error) {
+    return <div>Error:{error.message}</div>
+  }
 
   function renderMemories() {
-    return memories.map((memory) => (
-      <Memory
-        key={memory.id}
-        title={memory.name}
-        description={memory.description}
-        image='#'
-        timestamp='#'
-      />
-    ))
+    if (memories.length === 0) {
+      return <p>No memories currently.</p>
+    }
+    return memories
+      .sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp))
+      .map((memory) => (
+        <Memory
+          key={memory.id}
+          memory={memory}
+          deleteMemory={deleteMemory}
+          editMemory={showEditMemory}
+        />
+      ))
   }
 
   return <div>{renderMemories()}</div>
